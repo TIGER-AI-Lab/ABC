@@ -1,11 +1,15 @@
 # ABC: Achieving Better Control of Multimodal Embeddings using VLMs
-
-<a target="_blank" href="https://arxiv.org/abs/2502.01718">
+<a target="_blank" href="">
 <img style="height:22pt" src="https://img.shields.io/badge/-Paper-red?style=flat&logo=arxiv"></a>
-<a target="_blank" href="https://github.com/TIGER-AI-Lab/AceCoder">
+<a target="_blank" href="">
 <img style="height:22pt" src="https://img.shields.io/badge/-Code-green?style=flat&logo=github"></a>
-<a target="_blank" href="https://huggingface.co/datasets/TIGER-Lab/ABC">
+<a target="_blank" href="">
+<img style="height:22pt" src="https://img.shields.io/badge/-🌐%20Website-blue?style=flat"></a>
+<a target="_blank" href="">
 <img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Dataset-red?style=flat"></a>
+<a target="_blank" href="">
+<img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Models-red?style=flat"></a>
+<br>
 
 <br>
 
@@ -72,7 +76,7 @@ git pip install -r training_requirements.txt
 ```
 
 ### Pretraining
-Coming soon! Our pretraining dataset is relatively large (~300 GB), so we are currently exploring how to offer downloading as easy as possible.
+Coming soon! Our pretraining dataset is relatively large (~300 GB), so we are currently exploring how to offer downloading as easy as possible. Currently you can download the images in the pretraining from the `url` field in each row.
 
 ## Citation
 If you find this work helpful, please consider citing:
