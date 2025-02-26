@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="ABC: Achieving Better Control of Multimodal Embeddings using VLMs">
+    <meta property="og:title" content="ABC: Achieving Better Control of Multimodal Embeddings using VLMs" />
+    <meta property="og:description" content="" />
+    <meta property="og:url" content="https://tiger-ai-lab.github.io/ABC/" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <title>ABC: Achieving Better Control of Multimodal Embeddings using VLMs</title>
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">
+                            <span style="color: blue;">A</span>
+                            <span style="color: red;">B</span>
+                            <span style="color: green;">C</span>
+                        </h1>
+                        <h2 class="title is-4 publication-title">
+                            <span style="color: blue;">A</span>chieving <span style="color: red;">B</span>etter <span
+                                style="color: green;">C</span>ontrol of Multimodal Embeddings using VLMs
+                        </h2>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <sup>♠️</sup><a href="https://benjaminschneider.ca/">Benjamin Schneider</a>,
+                            </span>
+                            <span class="author-block">
+                                <sup>♠️</sup><a href="https://cs.uwaterloo.ca/~fkerschb/">Florian Kerschbaum</a>,
+                            </span>
+                            <span class="author-block">
+                                <sup>♠️</sup><a href="https://wenhuchen.github.io/">Wenhu Chen</a>
+                            </span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- GitHub link -->
+                                <span class="link-block">
+                                    <a href="https://github.com/TIGER-AI-Lab/CritiqueFineTuning" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+
+                                <!-- Paper link (placeholder) -->
+                                <span class="link-block">
+                                    <a href="https://arxiv.org/abs/111111111" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="ai ai-arxiv"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/TIGER-Lab/Qwen2.5-Math-7B-CFT" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            🤗
+                                        </span>
+                                        <span>Model</span>
+                                    </a>
+                                </span>
+
+                                <span class="link-block">
+                                    <a href="https://huggingface.co/datasets/TIGER-Lab/1111111" target="_blank"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            🤗
+                                        </span>
+                                        <span>Datasets</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <sup>♠️</sup>University of Waterloo,
+                            </span>
+                            <br>
+                            <span class="author-block">
+                                <small>
+                                    {benjamin.schneider, fkerschbaum, wenhu.chen}@uwaterloo.ca
+                                </small>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h1 class="title is-3">Abstract</h1>
+                    <div class="content has-text-justified">
+                        <p>
+                            Visual embedding models excel at zero-shot tasks like visual retrieval and classification.
+                            However, these models cannot be used for tasks that contain ambiguity or require user
+                            instruction.
+                            These tasks necessitate a multimodal embedding model, which outputs embeddings that
+                            combine visual and natural language input.
+                            Existing CLIP-based approaches embed images and text independently, and fuse the result.
+                            We find that this results in weak interactions between modalities, and poor user control
+                            over the representation.
+                            We introduce ABC, an open-source multimodal embedding model that uses a
+                            vision-language model backbone to deeply integrate image features with natural language
+                            instructions.
+                            ABC achieves best-for-size performance on MSCOCO image-to-text retrieval and is the
+                            top performing model on classification and VQA tasks in the Massive Multimodal Embedding
+                            Benchmark.
+                            With a strongly unified vision-language representation, ABC can use natural
+                            language to solve subtle and potentially ambiguous visual retrieval problems.
+                            To evaluate this capability, we design CtrlBench, a benchmark that requires
+                            interleaving textual instructions with image content for correct retrieval.
+                            ABC advances the state of multimodal embeddings by offering both high-quality
+                            representations and flexible natural language control.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-full">
+                        <div class="item">
+                            <!-- Your image here -->
+                            <img src="static/images/teaser.png" alt="CFT" />
+                            <h2 class="subtitle">
+                                An overview of our training regime. We use negative mining to augment our pretraining
+                                dataset with almost plausible text negatives for each image query.
+                                In our instruction finetuning stage, we craft multiple instructions from each image.
+                                We use multiple for captions for same image as negatives, the model must use the natural
+                                language instruction to choose the best
+                                (positive) text candidate for the query.
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h1 class="title is-1">Key Ideas & Design</h1>
+                    <div class="content has-text-justified">
+                        <p>
+                            ABC is designed to give the user maximum control over how images are represented. ABC is
+                            trained to be able to use natural language instructions to <i>represent specific aspects of
+                                images.</i> The key behind ABC's training is that we pretrain the model using a large
+                            dataset of
+                            <i>difficult embedding samples</i>, where each batch contains many candidates that are
+                            <i>relevant but not quite correct</i> <b>(left)</b>.
+                            The pretrained model is therefore able to generate embeddings that capture subtle
+                            differences.
+                            After a short finetuning stage, the model ideal for tasks like VQA, where differences in
+                            user instructions result in different correct answers <b>(right)</b>.
+                        </p>
+                        <div class="columns is-vcentered">
+                            <div class="column">
+                                <img src="static/images/data.png" style="width: 80%;" />
+                            </div>
+                            <div class="column">
+                                <img src="static/images/task.png" style="width: 120%;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h1 class="title is-1">Try it out!</h1>
+                    <div class="content has-text-justified">
+                        <p>
+                            Nothing beats trying it yourself! Just clone our repo and use the script below (demo.py in
+                            the repository) and get started
+                            creating embeddings!
+                            To recreate our model or do additional multimodal instruction finetuning on our
+                            pretrained base, checkout our repo for steps.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Styled Code Block</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 800px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            pre {
+                border-radius: 8px;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <section class="section">
+
+            <div class="container column is-four-fifths">
+                <pre class="code-block"><code class="language-python">
+    import torch
+    from transformers import AutoProcessor, AutoModel
+    
+    model = AutoModel.from_pretrained("TIGER-Lab/ABC")
+    processor = AutoProcessor.from_pretrained("TIGER-Lab/ABC")
+    
+    # Process multimodal input
+    inputs = processor(
+        text=["A photo of a cat", "A picture of a dog"],
+        images=[cat_image, dog_image],
+        return_tensors="pt",
+        padding=True
+    )
+    
+    # Generate embeddings
+    with torch.no_grad():
+        outputs = model(**inputs)
+        embeddings = outputs.multimodal_embeddings
+                </code></pre>
+            </div>
+        </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    </body>
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h1 class="title is-1">Evaluations</h1>
+                    <div class="content has-text-justified">
+                        <p>
+                            We evaluate on our model on zero-shot multimodal VQA, classification and retrieval tasks.
+                            Our model si
+                            the best performing model at both multimodal classification and VQA on the MMEB (Massive
+                            Multimodal Embedding Benchmark). Additional evaluations can be found within the paper.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image carousel -->
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column is-full">
+                        <div class="item">
+                            <!-- Your image here -->
+                            <img src="static/images/results.png" alt="main_result" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End image carousel -->
+
+    <section class="section hero is-light">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h1 class="title is-1">Dynamic Resolution</h1>
+                    <div class="content has-text-justified">
+                        <p>
+                            Many CLIP embedding models only support 224x224 as the input resolution.
+                            We find that downscaling images before embeddings results in significant performence
+                            degradation in some tasks (for example: <a
+                                href="https://arxiv.org/abs/2007.0855">ImageNet-A</a>).
+                            Therefore, we support image embedding with dynamically chosen resolutions, allowing the user
+                            to tradeoff between compute and embedding quality.
+                        </p>
+                        <img src="static/images/resolution.png" alt="resolution" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- BibTeX citation -->
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">Reference</h2>
+            Please kindly cite our paper if you use our code or results:
+            <pre><code>{}
+</code></pre>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-8">
+                    <div class="content has-text-centered">
+                        <p>
+                            This website is licensed under a <a rel="license"
+                                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons
+                                Attribution-ShareAlike 4.0 International License</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
