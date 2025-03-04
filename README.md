@@ -85,5 +85,13 @@ Coming soon! Our pretraining dataset is relatively large (~300 GB), so we are cu
 ## Citation
 If you find this work helpful, please consider citing:
 ```bibtex
-@article{}
+@misc{schneider2025abcachievingbettercontrol,
+      title={ABC: Achieving Better Control of Multimodal Embeddings using VLMs}, 
+      author={Benjamin Schneider and Florian Kerschbaum and Wenhu Chen},
+      year={2025},
+      eprint={2503.00329},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2503.00329}, 
+}
 ```
