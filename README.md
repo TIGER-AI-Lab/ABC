@@ -1,14 +1,14 @@
 # ABC: Achieving Better Control of Multimodal Embeddings using VLMs
-<a target="_blank" href="">
+<a target="_blank" href="https://arxiv.org/abs/2503.00329">
 <img style="height:22pt" src="https://img.shields.io/badge/-Paper-red?style=flat&logo=arxiv"></a>
-<a target="_blank" href="">
+<a target="_blank" href="https://github.com/TIGER-AI-Lab/ABC">
 <img style="height:22pt" src="https://img.shields.io/badge/-Code-green?style=flat&logo=github"></a>
-<a target="_blank" href="">
+<a target="_blank" href="https://tiger-ai-lab.github.io/ABC/">
 <img style="height:22pt" src="https://img.shields.io/badge/-🌐%20Website-blue?style=flat"></a>
-<a target="_blank" href="">
-<img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Dataset-red?style=flat"></a>
-<a target="_blank" href="">
+<a target="_blank" href="https://huggingface.co/TIGER-Lab/ABC-Qwen2VL-Instruct">
 <img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Models-red?style=flat"></a>
+<a target="_blank" href="https://huggingface.co/datasets/TIGER-Lab/ABC-VG-Instruct">
+<img style="height:22pt" src="https://img.shields.io/badge/-🤗%20Dataset-red?style=flat"></a>
 <br>
 
 <br>
@@ -23,25 +23,26 @@
 
 ## 🔥News
 
-- [2025/2/26] Release of the [ABC Paper](LINK_HERE), along with the first release of our [🤗 Model and Datasets](LINK_HERE - make a collection) on Hugging Face (more to come, stay tuned!).
+- [2025/3/4] Release of the [ABC Paper](https://arxiv.org/abs/2503.00329), along with the first release of our [🤗 Model and Datasets](https://huggingface.co/collections/TIGER-Lab/abc-67bf2036a7c51b2a99aa9f54) on Hugging Face (more to come, stay tuned!).
 
 
 ## Overview
-![./assets/images/ac_overview.png](./assets/images/ac_overview.png)
+![./assets/training_overview.png](./assets/training_overview.png)
 
-<details><summary>Abstract</summary> 
+<details><summary>ABC's Design</summary>  
+
 
 - We introduce ABC, an open-source multimodal embedding model that uses a
 vision-language model backbone to deeply integrate image features with natural language
 instructions.
-- ABC achieves best-for-size performance on MSCOCO image-to-text retrieval and is the
+
+- ABC is designed to give the user **maximum control** over how images are represented. If you need to use naturral langauge to specify which aspects of an image you want emphasized and represented, ABC is the perfect model for you!
+
+- The key behind ABC's training is that we pretrain the model using a large dataset of difficult embedding samples, where each batch contains many candidates that are relevant but not quite correct. The pretrained model is therefore able to generate embeddings that capture subtle differences. After a short finetuning stage, the model ideal for tasks like VQA, where differences in user instructions result in different correct answers (right).
+
+- ABC outputs great quality embeddings, ABC achieves best-for-size performance on MSCOCO image-to-text retrieval and is the
 top performing model on zero-shot classification and VQA tasks in the Massive Multimodal Embedding
 Benchmark.
-- Due to its unique novel instruction finetuning regime, ABC excels at using instructions to solve subtle and potentially ambiguous visual retrieval problems.
-- To evaluate this capability, we design `CtrlBench`, a benchmark that requires
-interleaving textual instructions with image content for correct retrieval.
-ABC advances the state of multimodal embeddings by offering both high-quality
-representations and flexible natural language control.
 
 </details>
 
@@ -49,12 +50,12 @@ representations and flexible natural language control.
 
 | Model | Supports Instructions | Base Model | Training Dataset |
 |:---------------------:|:-----------:|:----------------:|:--------------:|
-| ABC-Qwen2VL-Instruct  | [x]         | ABC-Qwen2VL-Pretrain | [TIGER-Lab/ABC-VG-Instruct]() |
-| ABC-Qwen2VL-Pretrain  | [ ]         | Qwen2VL-Instruct     | [TIGER-Lab/ABC-Pretrain]()    |
+| [ABC-Qwen2VL-Instruct](https://huggingface.co/TIGER-Lab/ABC-Qwen2VL-Instruct)  | ✅        | [ABC-Qwen2VL-Pretrain](https://huggingface.co/TIGER-Lab/ABC-Qwen2VL-Pretrain) | [TIGER-Lab/ABC-VG-Instruct]() |
+| [ABC-Qwen2VL-Pretrain](https://huggingface.co/TIGER-Lab/ABC-Qwen2VL-Pretrain)  | ❌        | [Qwen2VL-Instruct](https://huggingface.co/Qwen/Qwen2-VL-7B-Instruct)     | [TIGER-Lab/ABC-Pretrain](https://huggingface.co/datasets/TIGER-Lab/ABC-Pretraining-Data)    |
 
 ## 📚 Datasets
-- [ABC-VG-Instruct](): A custom dataset for multimodal finetuning. Contains multiple instructions per image, each corresponding to different aspects of each image.
-- [ABC-Pretrain](): Multimodal pretraining dataset with mined negatives.
+- [ABC-VG-Instruct](https://huggingface.co/datasets/TIGER-Lab/ABC-VG-Instruct): A custom dataset for multimodal finetuning. Contains multiple instructions per image, each corresponding to different aspects of each image.
+- [ABC-Pretrain](https://huggingface.co/datasets/TIGER-Lab/ABC-Pretraining-Data): Multimodal pretraining dataset with mined negatives.
 
 
 ## 🚀 Quick Start
