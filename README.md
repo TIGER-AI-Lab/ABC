@@ -36,7 +36,7 @@
 vision-language model backbone to deeply integrate image features with natural language
 instructions.
 
-- ABC is designed to give the user **maximum control** over how images are represented. If you need to use naturral langauge to specify which aspects of an image you want emphasized and represented, ABC is the perfect model for you!
+- ABC is designed to give the user **maximum control** over how images are represented in embeddings. If you need to use naturral langauge to specify which aspects of an image you want emphasized and represented, ABC is the perfect model for you!
 
 - The key behind ABC's training is that we pretrain the model using a large dataset of difficult embedding samples, where each batch contains many candidates that are relevant but not quite correct. The pretrained model is therefore able to generate embeddings that capture subtle differences. After a short finetuning stage, the model ideal for tasks like VQA, where differences in user instructions result in different correct answers (right).
 
@@ -72,16 +72,21 @@ python -i ./quick_start.py
 ```
 
 ## 📈 Zero-shot Performance
-Check out our [paper]() for additional evaluations!
+![./assets/results.png](./assets/results.png)
+Check out our [paper](https://arxiv.org/abs/2503.00329) for additional evaluations!
 
-### Instruction Finetuning
-Our training requires a slightly larger set of dependancies, please install them:
-```bash
-git pip install -r training_requirements.txt
-```
+## 🤖 Training
 
-### Pretraining
-Coming soon! Our pretraining dataset is relatively large (~300 GB), so we are currently exploring how to offer downloading as easy as possible. Currently you can download the images in the pretraining from the `url` field in each row.
+🚧  
+I'm currently figuring out the best way to make this as easy as possible (some of our data is quick large [~300 Gb of images]).  
+Please chekc back in a few days! Hopefully I can serve the whole dataset off huggingface.  
+🚧
+
+## 🤖 `CtrlBench`
+
+🚧  
+`CtrlBench` is a benchmark we constructed for the purpose of measuring how well a model can interleave visual and ntural language features. We found that many existing "multimodal" tasks are solveable by just looking at *one of* the text or the image. `CtrlBench` is designed to be a retreival task that requires combining modalities to solve the benchmark, measuring the models ability to output truly "multimodal" embeddings. See our paper for a more detailed description of the design and motivations behind `CtrlBench`.
+🚧
 
 ## Citation
 If you find this work helpful, please consider citing:
