@@ -3,7 +3,7 @@ import orjson
 from torch.utils.data import Dataset
 import numpy as np
 from datasets import load_dataset
-
+from fetch_datasets.pretrain import check_pretraining_downloaded
 class ConceptualCaptionsPretrainAdapter(Dataset):
 
 
@@ -11,8 +11,8 @@ class ConceptualCaptionsPretrainAdapter(Dataset):
         return len(self.meta)
     
     def __init__(self, negatives=None):      
-        assert "CC_ROOT" in os.environ, "Please specify the location of the Conceptual Captions images dataset.\n If you do not have the dataset downloaded, we provide a script to fetch images from the web"
         self.meta = load_dataset("TIGER-Lab/ABC-Pretraining-Data")
+        assert check_pretraining_downloaded, "Image Folder did not exist -- download it with`python fetch_datasets/pretrain`"
         self.negatives = negatives
 
     def _attach_negatives(self, idx, item):
