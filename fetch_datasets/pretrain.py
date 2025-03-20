@@ -19,8 +19,8 @@ def download_pretraining_data():
     path = os.path.join(cache_dir, "tigerlab/abc-pretrain")
     os.makedirs(path, exist_ok=True)
     from huggingface_hub import hf_hub_download
-#    for tarball in hf_hub_tarball:
-#        hf_hub_download(repo_id="TIGER-Lab/ABC-Pretraining-Data", repo_type="dataset", filename=tarball, local_dir=path)
+    for tarball in hf_hub_tarball:
+        hf_hub_download(repo_id="TIGER-Lab/ABC-Pretraining-Data", repo_type="dataset", filename=tarball, local_dir=path)
 
     print(f"{BOLD}Unpacking pretraining data, this could take a while...{BOLD}")
     os.system(f"cat {path}/abc-pretrain.tar.gz.part_* | tar -xvzf - -C {path} && rm {path}/abc-pretrain.tar.gz.part_*")
