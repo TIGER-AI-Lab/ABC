@@ -118,7 +118,7 @@ for example:
 Runs our pretraining on GPUs 0,1 with communication over port 44000. 
 his script still works if you only want to specify a single GPU for your training.
 
-If you have an issues feel free to open an issue on this repo. 😊
+If encounter any problems please open an issue on this repo. 😊
 
 ## Citation
 If you find this work helpful, please consider citing:
