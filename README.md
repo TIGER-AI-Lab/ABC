@@ -23,6 +23,8 @@
 
 ## 🔥News
 
+- [2025/3/24] Added scripts to easily fetch our datasets from HF hub, includiong our large (200 GB) pretraining dataset. Our training script now directly pulls these datasets from the hub making it very easy to train yuor our models / adapters. I also added a batched inference embedding function (example in batched_demo.py).
+
 - [2025/3/4] Release of the [ABC Paper](https://arxiv.org/abs/2503.00329), along with the first release of our [🤗 Model and Datasets](https://huggingface.co/collections/TIGER-Lab/abc-67bf2036a7c51b2a99aa9f54) on Hugging Face (more to come, stay tuned!).
 
 
@@ -75,18 +77,48 @@ python -i ./quick_start.py
 ![./assets/results.png](./assets/results.png)
 Check out our [paper](https://arxiv.org/abs/2503.00329) for additional evaluations!
 
+
+## Fetching Datasets from 🤗 Hub
+
+Our datasets are hosted on HuggingFace Hub. The text data and dataset metadata can be fetched using HF's `load_dataset` utility.
+To fetch the images from our datasets we provide scripts in the `fetch_datasets` directory.
+These scripts will pull the pretraining/finetuning image data off the hub and unpack them in your huggingface datasets cache (under a directory called tigerlab).
+Run `python ./fetch_datasets/pretrain.py` to get the pretraining dataset and `python ./fetch_datasets/instruct.py` to get the finetuning dataset, respectively.
+
 ## 🤖 Training
 
-🚧  
-I'm currently figuring out the best way to make this as easy as possible (some of our data is quick large [~300 Gb of images]).  
-Please chekc back in a few days! Hopefully I can serve the whole dataset off huggingface.  
-🚧
+**1. Install all requirements.**
+```
+pip install -r training_requirements.txt
+```
+**2. Download the appropriate dataset.**  
+Either thhe pretraining dataset:
+```
+python ./fetch_datasets/pretrain.py
+```
+or the instruction finetuning dataset:
+```
+python ./fetch_datasets/instruct.py
+```
+**3. Update Config**  
+Find the config you want to run in the `config` folder
+(Currently the example configs are nested under the `qwen` folder, one for pretraining and one for finetuning).
+At minimum, change the `output_dir` field to where you want to the checkpoints to be saved.
+Feel free to change any other settings in your chosen config. 😊
 
-## 🤖 `CtrlBench`
+**4. Run the training script**  
+The `scripts` directory contains a file for training the model with different GPU / system config settings:
+```
+./scripts/qwen_finetune.sh {GPU} {PORT} {CONFIG_PATH}
+```
+for example:
+```
+./scripts/qwen_finetune.sh 0,1 44000 ./config/qwen/QwenVL-8B-Instruct.json
+```
+Runs our pretraining on GPUs 0,1 with communication over port 44000. 
+his script still works if you only want to specify a single GPU for your training.
 
-🚧  
-`CtrlBench` is a benchmark we constructed for the purpose of measuring how well a model can interleave visual and ntural language features. We found that many existing "multimodal" tasks are solveable by just looking at *one of* the text or the image. `CtrlBench` is designed to be a retreival task that requires combining modalities to solve the benchmark, measuring the models ability to output truly "multimodal" embeddings. See our paper for a more detailed description of the design and motivations behind `CtrlBench`.
-🚧
+If you have an issues feel free to open an issue on this repo. 😊
 
 ## Citation
 If you find this work helpful, please consider citing:
