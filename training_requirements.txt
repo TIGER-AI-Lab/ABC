@@ -2,6 +2,7 @@ torch>=2.5.0
 transformers==4.47.1
 peft==0.13.2
 flash-attn>=2.0.0
+deepspeed
 orjson
 wandb
 datasets

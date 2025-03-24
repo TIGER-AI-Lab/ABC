@@ -92,5 +92,52 @@ def get_embed_function(base_model, pretrain_adapter, instruction_adapter):
             inps = _prepare_input(inps)
             output = model.inst_embed(inps, not use_adapter)
             
-            return output.cpu()
+            return output
+        return functools.partial(embed, model, processor)
+
+def get_batched_embed_function(base_model, pretrain_adapter, instruction_adapter):
+        min_pixels = 256*28*28
+        max_pixels = 1024*28*28
+        from transformers import AutoProcessor
+        
+        model = get_model(base_model, pretrain_adapter, instruction_adapter)
+
+        processor = AutoProcessor.from_pretrained(base_model,
+                                                padding_side="right",
+                                                use_fast=False,
+                                                max_pixels=max_pixels,
+                                                min_pixels=min_pixels)
+        
+    
+        def embed(model, processor, image = None, text = None):
+
+            conversation = None
+            use_adapter = False
+            
+            if isinstance(text, list) and image is None: # text only embedding case
+                conversation = [text_only_input(t) for t in text]
+            elif isinstance(image, list) and text is None:
+                conversation = [image_only_input(i) for i in image]
+            elif isinstance(image, list) and isinstance(text, list):
+                conversation = [image_and_inst_input(x, y) for (x,y) in zip(text,image)]
+                use_adapter = True
+            else:
+                raise Exception("NotSupportedModalityError")
+            
+            text_input = [processor.apply_chat_template(
+                c, tokenize=False, add_generation_prompt=True
+            ) for c in conversation]
+            image_inputs, _ = process_vision_info(conversation)
+
+            inps = processor(
+                text=text_input,
+                images=image_inputs,
+                padding=True,
+                return_tensors="pt",
+            )
+
+            inps = _prepare_input(inps)
+            output = model.inst_embed(inps, not use_adapter)
+            
+            return output
         return functools.partial(embed, model, processor)

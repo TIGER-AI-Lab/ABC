@@ -171,7 +171,7 @@ class QwenContrastiveDataset(Dataset):
         return data_item
 
     def __getitem__(self, i) -> Dict[str, torch.Tensor]:
-        try:
+       # try:
             data_item = self.adapter[i]
             if isinstance(data_item, dict):
                 return self.process_input(data_item)
@@ -179,8 +179,9 @@ class QwenContrastiveDataset(Dataset):
                 return [self.process_input(item) for item in data_item]
             else:
                 raise Exception("InvalidTypeError")
-        except:
-            return self.__getitem__(random.randint(0, self.__len__()))
+        #except Exception as e:
+
+            #return self.__getitem__(random.randint(0, self.__len__()))
 
 def build_eval_datasets(
     eval_batch_size: int,
