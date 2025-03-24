@@ -92,7 +92,7 @@ def get_embed_function(base_model, pretrain_adapter, instruction_adapter):
             inps = _prepare_input(inps)
             output = model.inst_embed(inps, not use_adapter)
             
-            return output.cpu()
+            return output
         return functools.partial(embed, model, processor)
 
 def get_batched_embed_function(base_model, pretrain_adapter, instruction_adapter):
@@ -139,5 +139,5 @@ def get_batched_embed_function(base_model, pretrain_adapter, instruction_adapter
             inps = _prepare_input(inps)
             output = model.inst_embed(inps, not use_adapter)
             
-            return output.cpu()
+            return output
         return functools.partial(embed, model, processor)
