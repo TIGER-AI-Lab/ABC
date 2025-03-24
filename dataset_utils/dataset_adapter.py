@@ -4,6 +4,7 @@ from torch.utils.data import Dataset
 import numpy as np
 from datasets import load_dataset
 from fetch_datasets.pretrain import check_pretraining_downloaded, get_pretraining_location
+from fetch_datasets.instruct import check_finetuning_downloaded, get_finetuning_location
 class ConceptualCaptionsPretrainAdapter(Dataset):
 
 
@@ -12,7 +13,7 @@ class ConceptualCaptionsPretrainAdapter(Dataset):
     
     def __init__(self, negatives=None):      
         self.meta = load_dataset("TIGER-Lab/ABC-Pretraining-Data")["train"]
-        assert check_pretraining_downloaded, "Image Folder did not exist -- download it with`python fetch_datasets/pretrain`"
+        assert check_pretraining_downloaded(), "Image Folder did not exist -- download it with`python fetch_datasets/pretrain.py`"
         self.root = get_pretraining_location(with_subdir=False)
         self.negatives = negatives
 
@@ -116,10 +117,9 @@ def format_inst_query(img_path, inst):
 class VGInstructAdapter(Dataset):
 
     def __init__(self):
-        assert "VG_ROOT" in os.environ, "Please specify the location of the visual genome iamges dataset"
-        self.root = os.environ["VG_ROOT"]
-        with open(os.path.join(self.root, "dataset.json")) as f:
-            self.ds_defintion = orjson.loads(f.read())
+        self.ds_defintion = load_dataset("TIGER-Lab/ABC-VG-Instruct")["train"]
+        assert check_finetuning_downloaded(), "Image Folder did not exist -- download it with`python fetch_datasets/instruct.py`"
+        self.root = get_finetuning_location()
 
     def __len__(self):
         return len(self.ds_defintion)
@@ -132,5 +132,5 @@ class VGInstructAdapter(Dataset):
             "id": str(i["id"]),
             "url": "nil", 
             "pos_cand": format_cand(i["phrase"]),
-            "query": format_inst_query(os.path.join(self.root, "VG_100K", f"{i["image"]}.jpg"), i["instruction"])
-        } for i in items]
+            "query": format_inst_query(os.path.join(self.root, f"{i["image"]}.jpg"), i["instruction"])
+        } for i in items.values()]

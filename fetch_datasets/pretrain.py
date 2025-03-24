@@ -1,7 +1,6 @@
-# fetches
-from datasets import config
+# fetches pretraining data, tools for validating that the data has been unpacked.
+from datasets import config, load_dataset
 import os
-cache_dir = config.HF_DATASETS_CACHE
 BOLD = '\033[1m'
 
 hf_hub_tarball = ["abc-pretrain.tar.gz.part_aa",
@@ -15,7 +14,9 @@ hf_hub_tarball = ["abc-pretrain.tar.gz.part_aa",
                 "abc-pretrain.tar.gz.part_ai"]
 
 def download_pretraining_data():
+    ds = load_dataset("TIGER-Lab/ABC-Pretraining-Data")
     print(f"{BOLD}Downloading pretraining data, this could take a while...{BOLD}")
+    cache_dir = config.HF_DATASETS_CACHE
     path = os.path.join(cache_dir, "tigerlab/abc-pretrain")
     os.makedirs(path, exist_ok=True)
     from huggingface_hub import hf_hub_download

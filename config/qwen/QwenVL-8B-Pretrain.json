@@ -1,6 +1,6 @@
 {
     "model_name_or_path": "Qwen/Qwen2-VL-7B-Instruct",
-    "output_dir": "/home/b3schnei/output/QwenVL-8B-Large-Batch",
+    "output_dir": "<YOUR/OUTPUT/PATH/HERE>",
     "overwrite_output_dir": true,
     "use_backbone_lora": 64,
     "use_llm_lora": 64,
@@ -25,13 +25,9 @@
     "deepspeed": "./deepspeed/zero_off.json",
     "report_to": "wandb",
     "model_architecture": "ABCQWEN",
-    "eval_datasets": [
-        "cc_pretrain"
-    ],
+    "eval_datasets": [],
     "eval_steps_per_dataset": 6,
-    "evaluation_strategy": "steps",
     "per_device_eval_batch_size": 100,
-    "eval_steps": 200,
     "negatives": 7,
     "training_dataset_name": "cc_pretrain",
     "max_dynamic_patch": 512,
