@@ -26,8 +26,7 @@
     "report_to": "wandb",
     "model_architecture": "ABCQWEN",
     "eval_datasets": [
-        "cc_pretrain",
-        "mscoco_pretrain"
+        "cc_pretrain"
     ],
     "eval_steps_per_dataset": 6,
     "evaluation_strategy": "steps",

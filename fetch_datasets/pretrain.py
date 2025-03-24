@@ -27,11 +27,19 @@ def download_pretraining_data():
 
 
 def check_pretraining_downloaded():
+    img_path = get_pretraining_location()
+    return os.path.isdir(img_path)
+
+def get_pretraining_location(with_subdir=True):
     from datasets import config
     import os
     cache_dir = config.HF_DATASETS_CACHE
-    img_path = os.path.join(cache_dir, "tigerlab/abc-pretrain/train")
-    return os.path.isdir(img_path)
+
+    if with_subdir:
+        return os.path.join(cache_dir, "tigerlab/abc-pretrain/train")
+    else:
+        return os.path.join(cache_dir, "tigerlab/abc-pretrain")
+
 
 if __name__ == "__main__":
     download_pretraining_data()

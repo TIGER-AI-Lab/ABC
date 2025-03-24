@@ -3,7 +3,7 @@ import orjson
 from torch.utils.data import Dataset
 import numpy as np
 from datasets import load_dataset
-from fetch_datasets.pretrain import check_pretraining_downloaded
+from fetch_datasets.pretrain import check_pretraining_downloaded, get_pretraining_location
 class ConceptualCaptionsPretrainAdapter(Dataset):
 
 
@@ -11,8 +11,9 @@ class ConceptualCaptionsPretrainAdapter(Dataset):
         return len(self.meta)
     
     def __init__(self, negatives=None):      
-        self.meta = load_dataset("TIGER-Lab/ABC-Pretraining-Data")
+        self.meta = load_dataset("TIGER-Lab/ABC-Pretraining-Data")["train"]
         assert check_pretraining_downloaded, "Image Folder did not exist -- download it with`python fetch_datasets/pretrain`"
+        self.root = get_pretraining_location(with_subdir=False)
         self.negatives = negatives
 
     def _attach_negatives(self, idx, item):
@@ -53,7 +54,7 @@ class ConceptualCaptionsPretrainAdapter(Dataset):
     # Currently the modality is image -> text
     def __getitem__(self, idx):
         metadata = self.meta[idx]
-        image = metadata["image"]
+        image = os.path.join(self.root, metadata["image"])
 
         formatted_item = {
             "id": metadata["id"],
