@@ -1,4 +1,4 @@
-# ABC: Achieving Better Control of Multimodal Embeddings using VLMs [TMLR 2025]
+# ABC: Achieving Better Control of Multimodal Embeddings using VLLMs [TMLR 2025]
 <a target="_blank" href="https://arxiv.org/abs/2503.00329">
 <img style="height:22pt" src="https://img.shields.io/badge/-Paper-red?style=flat&logo=arxiv"></a>
 <a target="_blank" href="https://github.com/TIGER-AI-Lab/ABC">
